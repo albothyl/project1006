@@ -1,0 +1,20 @@
+apply plugin: 'war'
+
+war {
+    baseName = 'kanban'
+    version =  "${version}"
+}
+
+dependencies {
+    // Domain =====================================================
+    compile project(':kanban-domain')
+
+    compile "javax.servlet:javax.servlet-api:${servletVersion}"
+    compile "com.fasterxml.jackson.core:jackson-databind:${jacksonVesion}"
+}
+
+task npmRunBuild (type : Exec) {
+    executable "${project.projectDir}/npmBuild.sh"
+}
+
+war.dependsOn npmRunBuild

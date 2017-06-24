@@ -1,0 +1,81 @@
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "gradle.plugin.com.boxfuse.client:flyway-release:4.0.3"
+        classpath "gradle.plugin.io.github.divinespear:jpa-schema-gradle-plugin:0.2.0-1"
+    }
+}
+
+ext {
+    //  Root ==================================
+    springVersion = '4.3.8.RELEASE'
+
+    //  Interface =============================
+    swaggerVersion = '2.6.1'
+    servletVersion = '3.1.0'
+    jacksonVesion = '2.8.8'
+
+    //  Domain ================================
+    springDataJpaVersion = '1.10.2.RELEASE'
+    hibernateVersion = '5.2.2.Final'
+    hibernateJpaVersion = '1.0.0.Final'
+    mysqlConnectorVersion = '5.1.38'
+    commonsIoVersion = '2.5'
+    commonsLang3Version = '3.4'
+
+    //  Logging ===============================
+    slf4jVersion = '1.7.21'
+    logbackVersion = '1.1.7'
+
+    //  Other =================================
+    guavaVersion = '20.0'
+    lombokVersion = '1.16.12'
+
+    //  Test ==================================
+    spockVersion = '1.0-groovy-2.4'
+    randomBeansVersion = '3.4.0'
+}
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'groovy'
+    apply plugin: 'idea'
+    apply plugin: 'eclipse-wtp'
+    apply plugin: 'io.github.divinespear.jpa-schema-generate'
+
+    group 'portfolio'
+    version '1.0-SNAPSHOT'
+
+    sourceCompatibility = 1.8
+
+    repositories {
+        mavenCentral()
+    }
+
+    task wrapper(type: Wrapper) {
+        gradleVersion = '2.9'
+    }
+
+    dependencies {
+        // Spring =====================================================
+        compile "org.springframework:spring-webmvc:${springVersion}"
+        compile "org.springframework:spring-aspects:${springVersion}"
+
+        // Util =======================================================
+        compile "com.google.guava:guava:${guavaVersion}"
+        compile "org.projectlombok:lombok:${lombokVersion}"
+
+        // Logging ====================================================
+        runtime "ch.qos.logback:logback-classic:${logbackVersion}"
+
+        // Test =======================================================
+        testCompile "org.springframework:spring-test:${springVersion}"
+        testCompile "org.spockframework:spock-core:${spockVersion}"
+        testCompile "org.spockframework:spock-spring:${spockVersion}"
+        testCompile "io.github.benas:random-beans:${randomBeansVersion}"
+    }
+}
