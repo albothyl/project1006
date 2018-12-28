@@ -19,12 +19,16 @@ import static javax.persistence.EnumType.STRING;
 public class Card extends CommonEntity {
 
 	private String title;
+
 	private String description;
+
 	@Enumerated(value = STRING)
 	private CardStatus status;
+
 	private String color;
-	@OneToMany(cascade = ALL, fetch = FetchType.EAGER)
+
 	@JoinColumn(name = "cardId")
+	@OneToMany(cascade = ALL, fetch = FetchType.EAGER)
 	private List<Task> tasks = Lists.newArrayList();
 
 	public static Card create(Long id, String title, String description, CardStatus status, String color) {
@@ -45,7 +49,7 @@ public class Card extends CommonEntity {
 		this.color = color;
 	}
 
-	public void statusChange(CardStatus cardStatus, int position) {
+	public void changeStatus(CardStatus cardStatus) {
 		this.status = cardStatus;
 	}
 }

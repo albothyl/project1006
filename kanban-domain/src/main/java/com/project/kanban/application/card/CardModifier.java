@@ -14,7 +14,6 @@ public class CardModifier {
 	@Autowired
 	private CardRepository cardRepository;
 
-
 	public Card modify(final Long cardId, final Card modifyCard) {
 		final Card card = cardRepository.findOne(cardId);
 		card.modify(modifyCard.getTitle(), modifyCard.getDescription(), modifyCard.getStatus(), modifyCard.getColor());
@@ -22,10 +21,10 @@ public class CardModifier {
 		return cardRepository.save(card);
 	}
 
-	public Card statusChange(final Long cardId, final String status, final int position) {
+	public Card statusChange(final Long cardId, final String status) {
 		final Card card = cardRepository.findOne(cardId);
 		final CardStatus cardStatus = CardStatus.find(status);
-		card.statusChange(cardStatus, position);
+		card.changeStatus(cardStatus);
 
 		return cardRepository.save(card);
 	}

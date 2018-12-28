@@ -1,6 +1,7 @@
 package com.project.kanban.domain.entity.task;
 
 import com.project.kanban.domain.entity.CommonEntity;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -8,9 +9,10 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(schema = "kanban", name = "tasks")
 @Getter
+@EqualsAndHashCode
 @NoArgsConstructor
+@Table(schema = "kanban", name = "tasks")
 public class Task extends CommonEntity {
 
 	private Long cardId;

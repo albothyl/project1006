@@ -36,6 +36,8 @@ public class TaskModifier {
 	}
 
 	private Task findTaskById(final Card card, final Long taskId) {
-		return card.getTasks().stream().filter(t -> t.getId().equals(taskId)).findAny().get();
+		return card.getTasks().stream()
+			.filter(t -> t.getId().equals(taskId))
+			.findAny().get();
 	}
 }

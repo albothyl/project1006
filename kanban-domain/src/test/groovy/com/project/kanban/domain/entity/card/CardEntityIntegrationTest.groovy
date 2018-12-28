@@ -24,11 +24,11 @@ class CardEntityIntegrationTest extends Specification {
 
 		when: "Save"
 		Card saved_Card = cardRepository.save(card)
+
 		then:
 		assert saved_Card.getTitle().equals(card.getTitle())
 		assert saved_Card.getDescription().equals(card.getDescription())
 		assert saved_Card.getStatus() == card.getStatus()
-		assert saved_Card.isDeleted() == card.isDeleted()
 
 		when: "Find"
 		Card founded_card = cardRepository.findOne(saved_Card.getId())

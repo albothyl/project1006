@@ -48,7 +48,7 @@ public class CardController {
 
 	@PatchMapping(value = "/cards/{cardId}")
 	public CardDto statusChange(@PathVariable("cardId") Long cardId, @RequestBody cardStatusDto cardStatusDto) {
-		final Card changedCard = cardModifier.statusChange(cardId, cardStatusDto.getStatus(), cardStatusDto.getPosition());
+		final Card changedCard = cardModifier.statusChange(cardId, cardStatusDto.getStatus());
 
 		return convertToDto(changedCard);
 	}
