@@ -5,8 +5,8 @@
 
     <!-- mysql connect parameter -->
     <entry key="base.mysql.jdbc.url">jdbc:mysql://127.0.0.1:3306/kanban?useSSL=false&amp;useUnicode=true&amp;characterEncoding=UTF8</entry>
-    <entry key="base.mysql.jdbc.username">summer</entry>
-    <entry key="base.mysql.jdbc.password">ejdnj!@#</entry>
+    <entry key="base.mysql.jdbc.username">db_id</entry>
+    <entry key="base.mysql.jdbc.password">db_pw</entry>
 
     <!-- hibernate parameter -->
     <entry key="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</entry>
