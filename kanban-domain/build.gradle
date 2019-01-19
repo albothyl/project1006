@@ -1,10 +1,10 @@
 apply plugin: 'org.flywaydb.flyway'
 
 flyway {
-    url = "jdbc:mysql://127.0.0.1:3306?useSSL=false"
+    url = "jdbc:mysql://127.0.0.1:3306/kanban?useSSL=false"
     driver = "com.mysql.jdbc.Driver"
-    user = 'fly'
-    password = 'gnjfgnjf!2'
+    user = 'db_id'
+    password = 'db_pw'
     schemas = ['kanban']
     table = 'flyway_migration_history'
     encoding = 'UTF8'
