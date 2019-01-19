@@ -1,7 +1,7 @@
 apply plugin: 'org.flywaydb.flyway'
 
 flyway {
-    url = "jdbc:mysql://127.0.0.1:3306/kanban?useSSL=false"
+    url = "jdbc:mysql://127.0.0.1:3306?useSSL=false"
     driver = "com.mysql.jdbc.Driver"
     user = 'db_id'
     password = 'db_pw'
