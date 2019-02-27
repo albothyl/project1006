@@ -31,3 +31,4 @@ export.sql
 npm-debug.log
 *.map
 **/dist/*
+package-lock.json
