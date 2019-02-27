@@ -13,8 +13,8 @@ import static javax.persistence.CascadeType.ALL;
 import static javax.persistence.EnumType.STRING;
 
 @Entity
-@Table(schema = "kanban", name = "cards")
 @Getter
+@Table(schema = "kanban", name = "cards")
 @NoArgsConstructor
 public class Card extends CommonEntity {
 

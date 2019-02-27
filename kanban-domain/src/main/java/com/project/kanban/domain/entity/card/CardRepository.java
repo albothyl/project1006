@@ -1,6 +1,8 @@
 package com.project.kanban.domain.entity.card;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import com.project.kanban.application.query.KanbanRepository;
+import org.springframework.stereotype.Repository;
 
-public interface CardRepository extends JpaRepository<Card, Long> {
+@Repository
+public interface CardRepository extends KanbanRepository<Card, Long>, CardRepositoryCustom {
 }

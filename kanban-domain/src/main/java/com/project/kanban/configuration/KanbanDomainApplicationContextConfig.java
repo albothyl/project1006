@@ -1,5 +1,6 @@
 package com.project.kanban.configuration;
 
+import com.project.kanban.application.KanbanApplication;
 import com.project.kanban.domain.KanbanDomain;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -9,7 +10,7 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
 @Configuration
 @Import({ KanbanDomainJpaConfig.class })
-@ComponentScan(basePackageClasses = { KanbanDomain.class })
+@ComponentScan(basePackageClasses = { KanbanApplication.class, KanbanDomain.class })
 public class KanbanDomainApplicationContextConfig {
 
 	@Bean

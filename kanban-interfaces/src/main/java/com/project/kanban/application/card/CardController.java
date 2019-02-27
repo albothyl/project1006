@@ -9,9 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.project.kanban.application.card.CardConverter.TO_DTO_FUNC;
-import static com.project.kanban.application.card.CardConverter.convertToDto;
-import static com.project.kanban.application.card.CardConverter.convertToEntity;
+import static com.project.kanban.application.card.CardConverter.*;
 
 @CrossOrigin
 @RestController
@@ -23,7 +21,6 @@ public class CardController {
 
 	@Autowired
 	private CardModifier cardModifier;
-
 
 	@GetMapping(value = "/cards")
 	public List<CardDto> getAllCardList() {

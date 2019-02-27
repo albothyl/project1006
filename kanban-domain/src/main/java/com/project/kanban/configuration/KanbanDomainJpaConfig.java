@@ -46,6 +46,7 @@ public class KanbanDomainJpaConfig {
 		vendorAdapter.setDatabase(MYSQL);
 
 		LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
+		factory.setPersistenceUnitName("kanban");
 		factory.setJpaVendorAdapter(vendorAdapter);
 		factory.setPackagesToScan(getClass().getPackage().getName());
 		factory.setDataSource(dataSource());

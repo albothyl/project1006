@@ -9,6 +9,9 @@ dependencies {
     // Domain =====================================================
     compile project(':kanban-domain')
 
+    // Spring =====================================================
+    compile "org.springframework:spring-webmvc:${springVersion}"
+
     compile "javax.servlet:javax.servlet-api:${servletVersion}"
     compile "com.fasterxml.jackson.core:jackson-databind:${jacksonVesion}"
 }

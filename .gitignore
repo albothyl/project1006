@@ -30,4 +30,4 @@ export.sql
 */node_modules/
 npm-debug.log
 *.map
-dist/
+**/dist/*

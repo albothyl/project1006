@@ -1,0 +1,92 @@
+/*
+depends on "java" plugin
+
+apply from: 'jpaGradle'
+ */
+
+repositories {
+	mavenCentral()
+}
+
+ext {
+	jpaMetamodelGeneratedDir = 'src/generated/java-jpa'
+	processorsString = ''
+}
+
+configurations {
+	jpaMetamodelGen {
+		extendsFrom compile
+	}
+}
+
+afterEvaluate {
+	def processors = new LinkedHashSet()
+
+	configurations.runtime.resolvedConfiguration.resolvedArtifacts.each { raf ->
+		def cid = raf.getModuleVersion().getId()
+
+		if (cid.group.equals('com.querydsl') && cid.name.equals('querydsl-core')) {
+			def queryDslAptVersion = cid.version
+			logger.info "[jpaModelGen-${project.name}] querydsl-apt version ${queryDslAptVersion}"
+			dependencies {
+				jpaMetamodelGen "com.querydsl:querydsl-apt:${queryDslAptVersion}"
+			}
+
+			processors << 'com.querydsl.apt.jpa.JPAAnnotationProcessor'
+		}
+
+		if (cid.group.equals('org.hibernate') && cid.name.equals('hibernate-core')) {
+			def hibernateJpaModelGenVersion = cid.version
+			dependencies {
+				jpaMetamodelGen "org.hibernate:hibernate-jpamodelgen:${hibernateJpaModelGenVersion}"
+			}
+
+			processors << 'org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor'
+		}
+	}
+
+	processorsString = processors.join(',')
+}
+
+sourceSets {
+	main {
+		java {
+			srcDir jpaMetamodelGeneratedDir
+		}
+	}
+}
+
+task generateJpaMetamodel(type: JavaCompile) {
+	def targetDir = file(jpaMetamodelGeneratedDir)
+	def compiledDestinationDir = "${buildDir}/tmp/apt-jpa"
+
+	classpath = configurations.jpaMetamodelGen
+	source = sourceSets.main.java
+	destinationDir = file(compiledDestinationDir)
+	outputs.upToDateWhen { false }
+
+	doFirst {
+		delete(targetDir)
+		targetDir.mkdirs()
+		options.define(
+				compilerArgs: [
+						'-proc:only',
+						'-encoding', 'utf-8',
+						'-s', targetDir.absolutePath,
+						'-processor', processorsString
+				]
+		)
+	}
+}
+
+task cleanGenerateSources {
+	doLast {
+		delete(file(jpaMetamodelGeneratedDir))
+	}
+}
+
+task generateSources {
+}
+
+compileJava.dependsOn generateSources
+generateSources.dependsOn cleanGenerateSources, generateJpaMetamodel

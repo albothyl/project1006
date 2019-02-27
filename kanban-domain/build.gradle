@@ -10,6 +10,8 @@ flyway {
     encoding = 'UTF8'
 }
 
+apply from: 'jpa.gradle'
+
 dependencies {
     // Spring ==============================================================================
     compile "org.springframework:spring-orm:${springVersion}"
@@ -19,6 +21,9 @@ dependencies {
     // Hibernate ===========================================================================
     compile "org.hibernate:hibernate-core:${hibernateVersion}"
     compile "org.hibernate:hibernate-entitymanager:${hibernateVersion}"
+    compile "com.querydsl:querydsl-jpa:${queryDslVersion}"
+//    compile("com.mysema.querydsl:querydsl-core:${queryDslVersion}")
+//    compile("com.mysema.querydsl:querydsl-jpa:${queryDslVersion}")
 
     // MySQL ===============================================================================
     compile "mysql:mysql-connector-java:${mysqlConnectorVersion}"

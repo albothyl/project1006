@@ -10,8 +10,8 @@ import javax.persistence.Table;
 
 @Entity
 @Getter
-@EqualsAndHashCode
 @NoArgsConstructor
+@EqualsAndHashCode(callSuper = true)
 @Table(schema = "kanban", name = "tasks")
 public class Task extends CommonEntity {
 
