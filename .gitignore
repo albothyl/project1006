@@ -32,3 +32,4 @@ npm-debug.log
 *.map
 **/dist/*
 package-lock.json
+kanban-interfaces/src/test/
