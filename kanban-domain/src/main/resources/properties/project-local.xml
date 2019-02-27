@@ -9,7 +9,7 @@
     <entry key="base.mysql.jdbc.password">db_pw</entry>
 
     <!-- hibernate parameter -->
-    <entry key="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</entry>
+    <entry key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</entry>
     <entry key="hibernate.show_sql">true</entry>
     <entry key="hibernate.format_sql">true</entry>
     <entry key="hibernate.ejb.naming_strategy">org.hibernate.cfg.DefaultNamingStrategy</entry>
